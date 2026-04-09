@@ -3,13 +3,23 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        
+        <div>
+            <h2> Nome do Usuario: <span th:text="${nome}"></span> </h2><br>
+            <h3> Nome do Curso: <span th:text=" ${curso}"></span> </h3><br>
+            <h3> Linguagem Favorita: <span th:text="${linguagemFavorita}"></span> </h3><br>
+        </div>
+        <main>
+        <nav>
+                <a href= "/portal"> Portal</a>
+            </nav>
+        </main>
     </body>
 </html>
