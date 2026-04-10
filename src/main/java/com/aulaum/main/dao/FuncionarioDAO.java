@@ -24,7 +24,7 @@ public class FuncionarioDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            stmt = conn.prepareStatement("SELECT * FROM produtos");
+            stmt = conn.prepareStatement("SELECT * FROM funcionario");
             rs = stmt.executeQuery();
             while(rs.next()){
                 
@@ -35,7 +35,7 @@ public class FuncionarioDAO {
                 funcionario.setCargo(rs.getString("cargo"));
                 funcionario.setDepartamento(rs.getString("departamento"));
                 funcionario.setEmail(rs.getString("email"));
-                funcionario.setDataContratacao(rs.getDate("data"));
+                funcionario.setDataContratacao(rs.getDate("data_contratacao"));
                 
                 lista.add(funcionario);
             }
@@ -46,4 +46,51 @@ public class FuncionarioDAO {
     return lista;
     }
     
-}
+  public int TotalFuncionarios(){
+      int total = 0;
+      try{
+          Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+          
+            stmt = conn.prepareStatement("SELECT count(*) AS total FROM funcionario");
+            rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                total = rs.getInt("total");
+            }
+      }catch (SQLException e){
+            e.printStackTrace();
+        }
+      return total;
+  }
+  
+  public List<FuncionarioBEAN> Tecnologia(){
+        List <FuncionarioBEAN> lista = new ArrayList<>();
+        try{
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conn.prepareStatement("SELECT * FROM funcionario where departamento = 'Tecnologia'");
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                
+                FuncionarioBEAN funcionario = new FuncionarioBEAN();
+                
+                funcionario.setId(rs.getInt("id"));
+                funcionario.setNome(rs.getString("nome"));
+                funcionario.setCargo(rs.getString("cargo"));
+                funcionario.setDepartamento(rs.getString("departamento"));
+                funcionario.setEmail(rs.getString("email"));
+                funcionario.setDataContratacao(rs.getDate("data_contratacao"));
+                
+                lista.add(funcionario);
+            }
+            
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    return lista;
+  }
+        }
