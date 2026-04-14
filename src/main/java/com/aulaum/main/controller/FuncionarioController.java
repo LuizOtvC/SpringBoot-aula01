@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FuncionarioController {
     FuncionarioDAO dao = new FuncionarioDAO();
-    @GetMapping("/Funcionarios")
+    @GetMapping("/funcionarios")
     public String Funcionarios(Model model){
        List<FuncionarioBEAN> lista = dao.ler();
        model.addAttribute("lista", lista);
-       return"Funcionarios";
+       return"funcionarios";
     }
     @GetMapping("/painel")
     public String abrirPainel(Model model){
@@ -30,10 +30,10 @@ public class FuncionarioController {
         model.addAttribute("total", total);
         return "painel";
     }
-    @GetMapping("/Funcionarios/tecnologia")
+    @GetMapping("/funcionarios/tecnologia")
     public String funcionariosTecnologia(Model model){
         List<FuncionarioBEAN> list = dao.Tecnologia();
         model.addAttribute("list", list);
-        return "Funcionarios";
+        return "funcionarios";
     }
 }
